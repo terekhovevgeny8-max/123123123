@@ -174,6 +174,110 @@
             transform: translateY(-3px);
         }
         
+        /* Стили для формы заказа */
+        .order-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .service-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .service-option:hover {
+            border-color: #2575fc;
+            background: #f0f7ff;
+        }
+        
+        .service-option.selected {
+            border-color: #2575fc;
+            background: #e6f0ff;
+        }
+        
+        .service-price {
+            font-weight: 600;
+            color: #2575fc;
+            margin-left: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #1c65e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
         footer {
             text-align: center;
             padding: 25px;
@@ -205,6 +309,11 @@
             section {
                 padding: 25px;
             }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
         }
     </style>
 </head>
@@ -215,6 +324,7 @@
             <a href="#portfolio" class="menu-item">Мои работы</a>
             <a href="#about" class="menu-item">Обо мне</a>
             <a href="#contact" class="menu-item">Контакты</a>
+            <a href="#order" class="menu-item">Заказать</a>
         </div>
     </nav>
 
@@ -253,7 +363,6 @@
             <p>Я профессиональный фотограф и дизайнер с 7-летним опытом работы. Специализируюсь на портретной, пейзажной и архитектурной фотографии, а также на создании современных интерьеров. Моя карьера началась с учебы в Московской школе фотографии, где я освоил не только технические аспекты, но и художественное видение, необходимое для создания выразительных снимков.</p>
             <p>Моя цель - запечатлеть уникальные моменты и создать визуальные решения, которые вдохновляют и вызывают эмоции. Я верю, что хорошая фотография или дизайн должны не только соответствовать техническим стандартам, но и передавать настроение, историю и индивидуальность. В каждом проекте я стремлюсь найти баланс между творческим подходом и практическими потребностями клиента. С недавнего времени я решил увлечься составлением сайтов.
 Для того, чтобы качественно изучить и понять как создавать сайты я пошёл на специальную программу обучения в Финансовый университет при Правительстве РФ! Надеюсь, у меня вышло неплохо!</p>
-            
             <h3 style="margin-top: 25px; color: #2575fc;">Мои навыки</h3>
             <div class="skills-container">
                 <div class="skill">Фотография</div>
@@ -265,6 +374,76 @@
                 <div class="skill">Композиция</div>
                 <div class="skill">Работа со светом</div>
             </div>
+        </section>
+
+        <section id="order">
+            <h2>Форма заказа</h2>
+            <p>Заполните форму ниже, чтобы оформить заказ на мои услуги. Я свяжусь с вами в течение 24 часов для уточнения деталей и согласования сроков выполнения работы.</p>
+            
+            <form class="order-form" id="orderForm">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Ваше имя *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Телефон *</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email *</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Выберите услугу *</label>
+                    <div class="service-options">
+                        <div class="service-option" data-service="portrait">
+                            <input type="radio" id="portrait" name="service" value="portrait" style="display: none;">
+                            <span>Портретная съемка</span>
+                            <span class="service-price">5 000 ₽</span>
+                        </div>
+                        <div class="service-option" data-service="landscape">
+                            <input type="radio" id="landscape" name="service" value="landscape" style="display: none;">
+                            <span>Пейзажная съемка</span>
+                            <span class="service-price">8 000 ₽</span>
+                        </div>
+                        <div class="service-option" data-service="architecture">
+                            <input type="radio" id="architecture" name="service" value="architecture" style="display: none;">
+                            <span>Архитектурная съемка</span>
+                            <span class="service-price">10 000 ₽</span>
+                        </div>
+                        <div class="service-option" data-service="interior">
+                            <input type="radio" id="interior" name="service" value="interior" style="display: none;">
+                            <span>Дизайн интерьера</span>
+                            <span class="service-price">15 000 ₽</span>
+                        </div>
+                        <div class="service-option" data-service="other">
+                            <input type="radio" id="other" name="service" value="other" style="display: none;">
+                            <span>Другая услуга</span>
+                            <span class="service-price">по договоренности</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="date">Предпочтительная дата съемки/встречи</label>
+                    <input type="date" id="date" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="message">Дополнительная информация</label>
+                    <textarea id="message" class="form-control" placeholder="Опишите ваши пожелания, идеи или особые требования..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-block">Отправить заявку</button>
+            </form>
         </section>
 
         <section id="contact">
@@ -303,6 +482,54 @@
                     top: targetSection.offsetTop - 80,
                     behavior: 'smooth'
                 });
+            });
+        });
+        
+        // Выбор услуги в форме заказа
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Снимаем выделение со всех опций
+                document.querySelectorAll('.service-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Выделяем выбранную опцию
+                this.classList.add('selected');
+                
+                // Активируем соответствующий radio input
+                const radioInput = this.querySelector('input[type="radio"]');
+                radioInput.checked = true;
+            });
+        });
+        
+        // Обработка отправки формы
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Проверяем, выбрана ли услуга
+            const selectedService = document.querySelector('input[name="service"]:checked');
+            if (!selectedService) {
+                alert('Пожалуйста, выберите услугу');
+                return;
+            }
+            
+            // Получаем данные формы
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                service: selectedService.value,
+                date: document.getElementById('date').value,
+                message: document.getElementById('message').value
+            };
+            
+            // В реальном приложении здесь был бы AJAX-запрос к серверу
+            alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');
+            
+            // Очищаем форму
+            this.reset();
+            document.querySelectorAll('.service-option').forEach(opt => {
+                opt.classList.remove('selected');
             });
         });
     </script>
